@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: "Manage your tasks",
 };
 
+// Providers
+import { QueryProvider } from "@/providers/query-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${GeistSans.className} min-h-screen antialiased`}>
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

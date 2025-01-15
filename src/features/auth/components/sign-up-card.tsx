@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -130,6 +131,18 @@ export const SignUpCard = () => {
           <FaGithub className="mr-2 size-5" />
           Continue with Github
         </Button>
+      </CardContent>
+      <div className="px-7">
+        <DottedSeparator />
+      </div>
+      <CardContent className="flex items-center justify-center p-7">
+        <p className="text-xs">
+          Don&apos;t have an account?{" "}
+          <Link href="/sign-in" className="text-blue-700">
+            Click here
+          </Link>{" "}
+          to create one.
+        </p>
       </CardContent>
     </Card>
   );
