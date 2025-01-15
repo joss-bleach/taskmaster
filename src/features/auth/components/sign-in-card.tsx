@@ -3,6 +3,8 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema } from "../schema";
+import { useLogin } from "../api/use-login";
 
 import {
   Form,
@@ -17,22 +19,19 @@ import { Input } from "@/components/ui/input";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 
-const signInFormSchema = z.object({
-  email: z.string().trim().min(1).email(),
-  password: z.string().trim().min(1),
-});
-
 export const SignInCard = () => {
-  const form = useForm<z.infer<typeof signInFormSchema>>({
-    resolver: zodResolver(signInFormSchema),
+  const { mutate } = useLogin();
+
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const handleOnSubmit = (values: z.infer<typeof signInFormSchema>) => {
-    console.log(values);
+  const handleOnSubmit = (values: z.infer<typeof signInSchema>) => {
+    mutate({ json: values });
   };
 
   return (
