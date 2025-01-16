@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
