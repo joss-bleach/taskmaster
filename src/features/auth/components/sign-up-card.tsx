@@ -3,6 +3,8 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpSchema } from "../schema";
+import { useRegister } from "../api/use-register";
 
 import {
   Form,
@@ -23,15 +25,11 @@ import { Input } from "@/components/ui/input";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 
-const signUpFormSchema = z.object({
-  name: z.string().trim().min(1).max(256),
-  email: z.string().trim().min(1).email(),
-  password: z.string().trim().min(8).max(256),
-});
-
 export const SignUpCard = () => {
-  const form = useForm<z.infer<typeof signUpFormSchema>>({
-    resolver: zodResolver(signUpFormSchema),
+  const { mutate } = useRegister();
+
+  const form = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -39,8 +37,8 @@ export const SignUpCard = () => {
     },
   });
 
-  const handleOnSubmit = (values: z.infer<typeof signUpFormSchema>) => {
-    console.log(values);
+  const handleOnSubmit = (values: z.infer<typeof signUpSchema>) => {
+    mutate({ json: values });
   };
 
   return (
