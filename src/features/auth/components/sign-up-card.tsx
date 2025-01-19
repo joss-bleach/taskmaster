@@ -28,7 +28,7 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 
 export const SignUpCard = () => {
-  const { mutate } = useRegister();
+  const { mutate, isPending } = useRegister();
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -65,7 +65,12 @@ export const SignUpCard = () => {
                 <FormItem>
                   <FormLabel className="sr-only">Enter your name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="Your name" {...field} />
+                    <Input
+                      type="text"
+                      disabled={isPending}
+                      placeholder="Your name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -82,6 +87,7 @@ export const SignUpCard = () => {
                   <FormControl>
                     <Input
                       type="email"
+                      disabled={isPending}
                       placeholder="Email address"
                       {...field}
                     />
@@ -97,13 +103,18 @@ export const SignUpCard = () => {
                 <FormItem>
                   <FormLabel className="sr-only">Enter your password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="Password" {...field} />
+                    <Input
+                      type="password"
+                      disabled={isPending}
+                      placeholder="Password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button disabled={false} size="lg" className="w-full">
+            <Button disabled={isPending} size="lg" className="w-full">
               Continue
             </Button>
           </form>
@@ -117,7 +128,7 @@ export const SignUpCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGoogle className="mr-2 size-5" />
           Continue with Google
@@ -126,7 +137,7 @@ export const SignUpCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGithub className="mr-2 size-5" />
           Continue with Github
