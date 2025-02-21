@@ -22,7 +22,7 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           </ul>
         </div>
       </header>
-      <div className="mx-auto w-[380px] py-16">{children}</div>
+      <div className="mx-auto w-[380px] px-6 py-16 md:px-0">{children}</div>
     </div>
   );
 };
