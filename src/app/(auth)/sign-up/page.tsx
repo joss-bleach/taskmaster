@@ -1,16 +1,13 @@
-import { AuthHeading } from "@/modules/auth/ui/components/auth-heading";
 import { Metadata } from "next";
+
+import { SignUpSection } from "@/modules/auth/ui/sections/sign-up-section";
 
 export const metadata: Metadata = {
   title: "Get started",
 };
 
 const Page = () => {
-  return (
-    <div>
-      <AuthHeading title="Get started." />
-    </div>
-  );
+  return <SignUpSection />;
 };
 
 export default Page;

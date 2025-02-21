@@ -7,7 +7,7 @@ import { AuthButton } from "../components/auth-button";
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-full w-full">
-      <header className="mx-auto flex h-[70px] w-full max-w-6xl items-center px-6">
+      <header className="mx-auto flex h-[80px] w-full max-w-6xl items-center px-6">
         <div className="flex h-full w-full items-center justify-between">
           <Link href="/">
             <Logo />
@@ -22,7 +22,7 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           </ul>
         </div>
       </header>
-      <div className="mx-auto w-[380px]">{children}</div>
+      <div className="mx-auto w-[380px] py-16">{children}</div>
     </div>
   );
 };
