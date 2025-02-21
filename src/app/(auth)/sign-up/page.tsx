@@ -1,3 +1,4 @@
+import { AuthHeading } from "@/modules/auth/ui/components/auth-heading";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +6,11 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return <div>Sign up Page</div>;
+  return (
+    <div>
+      <AuthHeading title="Get started." />
+    </div>
+  );
 };
 
 export default Page;
