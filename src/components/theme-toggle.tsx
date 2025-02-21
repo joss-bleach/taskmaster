@@ -75,9 +75,7 @@ export const ThemeToggle = () => {
       >
         <motion.path
           animate={
-            resolvedTheme === "dark"
-              ? { rotate: 360, d: moonSvgPath }
-              : { rotate: 0, d: sunSvgPath }
+            resolvedTheme === "dark" ? { d: moonSvgPath } : { d: sunSvgPath }
           }
           d={resolvedTheme === "dark" ? moonSvgPath : sunSvgPath}
           className="fill-accent/80 stroke-foreground stroke-1"
