@@ -8,11 +8,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().min(1),
   },
   client: {
-    NEXT_PUBLIC_BASE_URL: z
-      .string()
-      .url()
-      .min(1)
-      .default("http://localhost:3000"),
+    NEXT_PUBLIC_BASE_URL: z.string().url().min(1),
   },
   runtimeEnv: {
     SUPABASE_URL: process.env.SUPABASE_URL,
