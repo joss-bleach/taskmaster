@@ -3,17 +3,14 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/supabase/session";
 
 import { getWorkspaceMembershipByUserId } from "@/modules/member/actions";
+import { createClient } from "@/supabase/client";
 
 const Page = async () => {
+  const supabase = await createClient();
   const {
-    data: { session },
-  } = await getSession();
-
-  // if (!session) {
-  //   redirect("/sign-in");
-  // }
-  console.log(session);
-  return <div>{JSON.stringify(session)}</div>;
+    data: { user },
+  } = await supabase.auth.getUser();
+  return <div>{JSON.stringify(user)}</div>;
 };
 //   const userId = await getUserId();
 //   if (!userId) return redirect("/sign-in");
