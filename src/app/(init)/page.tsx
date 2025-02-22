@@ -9,9 +9,10 @@ const Page = async () => {
     data: { session },
   } = await getSession();
 
-  if (!session) {
-    redirect("/sign-in");
-  }
+  // if (!session) {
+  //   redirect("/sign-in");
+  // }
+  console.log(session);
   return <div>{JSON.stringify(session)}</div>;
 };
 //   const userId = await getUserId();
