@@ -24,6 +24,7 @@ export const SignUpForm = () => {
       name: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -80,6 +81,24 @@ export const SignUpForm = () => {
                   className="h-[40px] w-full"
                   type="password"
                   placeholder="Enter your password"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="sr-only">Confirm password</FormLabel>
+              <FormControl>
+                <Input
+                  className="h-[40px] w-full"
+                  type="password"
+                  placeholder="Confirm your password"
                   {...field}
                 />
               </FormControl>
