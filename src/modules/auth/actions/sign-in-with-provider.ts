@@ -1,5 +1,5 @@
 "use server";
-import { Provider } from "@supabase/supabase-js";
+import { type Provider } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 
 import { env } from "@/config/env";
@@ -12,7 +12,14 @@ export async function signInWithProvider(provider: Provider) {
   }
 
   const supabase = await createClient();
-  const redirectUrl = env.NEXT_PUBLIC_BASE_URL + "/auth/callback";
+
+  let redirectUrl = env.NEXT_PUBLIC_BASE_URL + "/auth/callback";
+  if (env.NODE_ENV === "development") {
+    redirectUrl = env.NEXT_PUBLIC_BASE_URL + "/auth/callback";
+  }
+  if (env.NODE_ENV === "production") {
+    redirectUrl = process.env.VERCEL_URL + "/auth/callback";
+  }
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
