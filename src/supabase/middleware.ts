@@ -7,10 +7,7 @@ import {
 
 import { env } from "@/config/env";
 
-export async function updateSession(
-  request: NextRequest,
-  response: NextResponse,
-) {
+export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -27,10 +24,8 @@ export async function updateSession(
         supabaseResponse = NextResponse.next({
           request,
         });
-        cookiesToSet.forEach(
-          ({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
-          setSkipSessionRefreshCookie(response, true),
+        cookiesToSet.forEach(({ name, value, options }) =>
+          supabaseResponse.cookies.set(name, value, options),
         );
       },
     },
