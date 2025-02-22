@@ -10,18 +10,18 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (request.nextUrl.pathname.includes("/sign-in") && user) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-  if (request.nextUrl.pathname.includes("/sign-up") && user) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-  if (!request.nextUrl.pathname.includes("/sign-in") && !user) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
-  }
-  if (!request.nextUrl.pathname.includes("/sign-up") && !user) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
-  }
+  // if (request.nextUrl.pathname.includes("/sign-in") && user) {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
+  // if (request.nextUrl.pathname.includes("/sign-up") && user) {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
+  // if (!request.nextUrl.pathname.includes("/sign-in") && !user) {
+  //   return NextResponse.redirect(new URL("/sign-in", request.url));
+  // }
+  // if (!request.nextUrl.pathname.includes("/sign-up") && !user) {
+  //   return NextResponse.redirect(new URL("/sign-in", request.url));
+  // }
 
   return response;
 }
