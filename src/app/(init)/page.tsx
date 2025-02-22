@@ -2,7 +2,7 @@ import { getWorkspaceMembershipByUserId } from "@/modules/member/actions";
 import { getSession } from "@/supabase/session";
 import { redirect } from "next/navigation";
 
-const Home = async () => {
+const Page = async () => {
   const {
     data: { session },
   } = await getSession();
@@ -11,11 +11,11 @@ const Home = async () => {
     userId: session.user.id,
   });
 
-  if (membership.length === 0) {
-    return redirect("/create");
+  if (membership.length > 0) {
+    return redirect(`/w/${membership[0].workspaceId}/`);
   }
 
-  return redirect(`/w/${membership[0].workspaceId}/`);
+  return redirect("/create-workspace");
 };
 
-export default Home;
+export default Page;
