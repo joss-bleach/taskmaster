@@ -59,8 +59,6 @@ export const ThemeToggle = () => {
   if (!isMounted)
     return <Skeleton className="bg-accent size-[32px] rounded-full" />;
 
-  console.log(resolvedTheme);
-
   return (
     <Button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
