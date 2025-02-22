@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const userId = await getUserId();
+  console.log(userId);
   if (userId) return redirect("/");
   return <SignInSection />;
 };
