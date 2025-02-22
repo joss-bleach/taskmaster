@@ -6,7 +6,7 @@ const Page = async () => {
   const {
     data: { session },
   } = await getSession();
-  if (!session || !session.user) return redirect("/sign-in");
+  if (!session) return redirect("/sign-in");
   const membership = await getWorkspaceMembershipByUserId({
     userId: session.user.id,
   });
