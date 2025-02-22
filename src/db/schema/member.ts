@@ -30,6 +30,7 @@ const member = pgTable(
   (table) => [
     index("workspace_user_idx").on(table.workspaceId, table.userId),
     index("workspace_role_idx").on(table.workspaceId, table.role),
+    index("user_idx").on(table.userId),
   ],
 );
 
