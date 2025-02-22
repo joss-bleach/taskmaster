@@ -10,7 +10,7 @@ const Page = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return redirect("/sign-in");
+  // if (!user) return redirect("/sign-in");
   console.log(user);
   return <div>{JSON.stringify(user)}</div>;
 };
