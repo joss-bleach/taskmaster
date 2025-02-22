@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 };
 
 const Page = async () => {
-  const { data: session } = await getSession();
-  if (session) return redirect("/");
+  // const { data: session } = await getSession();
+  // if (session) return redirect("/");
   return <SignInSection />;
 };
 

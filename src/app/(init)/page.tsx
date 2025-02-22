@@ -6,16 +6,17 @@ const Page = async () => {
   const {
     data: { session },
   } = await getSession();
-  if (!session) return redirect("/sign-in");
-  const membership = await getWorkspaceMembershipByUserId({
-    userId: session.user.id,
-  });
+  // if (!session) return redirect("/sign-in");
+  // const membership = await getWorkspaceMembershipByUserId({
+  //   userId: session.user.id,
+  // });
 
-  if (membership.length > 0) {
-    return redirect(`/w/${membership[0].workspaceId}/`);
-  }
+  // if (membership.length > 0) {
+  //   return redirect(`/w/${membership[0].workspaceId}/`);
+  // }
 
-  return redirect("/create-workspace");
+  // return redirect("/create-workspace");
+  return <div>{JSON.stringify(session)}</div>;
 };
 
 export default Page;
