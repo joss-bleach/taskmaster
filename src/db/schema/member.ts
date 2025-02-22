@@ -15,7 +15,7 @@ const member = pgTable(
       .notNull()
       .references(() => workspace.id, { onDelete: "cascade" }),
     role: varchar("role", {
-      enum: ["member", "admin", "moderator"],
+      enum: ["member", "admin", "moderator", "owner"],
       length: 255,
     })
       .notNull()
