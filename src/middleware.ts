@@ -4,7 +4,6 @@ import { createClient } from "./supabase/client";
 
 export async function middleware(request: NextRequest) {
   const response = await updateSession(request);
-  const pathname = request.nextUrl.pathname;
   const supabase = await createClient();
 
   const {
@@ -23,6 +22,8 @@ export async function middleware(request: NextRequest) {
   if (!request.nextUrl.pathname.includes("/sign-up") && !user) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
+
+  return response;
 }
 
 export const config = {
