@@ -7,6 +7,10 @@ export const env = createEnv({
     BETTER_AUTH_URL: z.string().min(1),
     DATABASE_URL: z.string().min(1),
     NODE_ENV: z.string().min(1).default("development"),
+    GITHUB_ID: z.string().min(1),
+    GITHUB_SECRET: z.string().min(1),
+    GOOGLE_ID: z.string().min(1),
+    GOOGLE_SECRET: z.string().min(1),
   },
   client: {},
   runtimeEnv: {
@@ -14,5 +18,9 @@ export const env = createEnv({
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+    GITHUB_ID: process.env.GITHUB_ID,
+    GITHUB_SECRET: process.env.GITHUB_SECRET,
+    GOOGLE_ID: process.env.GOOGLE_ID,
+    GOOGLE_SECRET: process.env.GOOGLE_SECRET,
   },
 });
