@@ -11,14 +11,20 @@ export const metadata: Metadata = {
     "Streamline your workflow with Taskmaster - the all-in-one solution for managing teams, projects, and tasks.",
 };
 
+import { AppProvider } from "@/providers/app-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${GeistSans.className} antialiased`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${GeistSans.className} antialiased h-full min-h-screen`}
+      >
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }
