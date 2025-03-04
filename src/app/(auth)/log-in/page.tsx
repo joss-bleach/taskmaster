@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getSession } from "@/modules/auth/actions/get-session";
 
+import { LoginForm } from "@/modules/auth/ui/components/login-form";
+
 export const metadata: Metadata = {
   title: "Log in",
 };
@@ -12,7 +14,7 @@ const Page = async () => {
     redirect("/");
   }
 
-  return <div>Log in</div>;
+  return <LoginForm />;
 };
 
 export default Page;
