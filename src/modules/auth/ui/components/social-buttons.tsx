@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 
 export const SocialButtons = () => {
   const signIn = async (provider: Providers) => {
-    const data = await authClient.signIn.social({
+    await authClient.signIn.social({
       provider,
       callbackURL: "/",
     });
