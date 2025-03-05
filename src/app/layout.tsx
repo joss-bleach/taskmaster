@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.className} antialiased h-full min-h-screen`}
+        className={`${GeistSans.className} h-full min-h-screen antialiased`}
       >
         <AppProvider>{children}</AppProvider>
       </body>

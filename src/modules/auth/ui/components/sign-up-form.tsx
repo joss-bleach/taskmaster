@@ -139,7 +139,7 @@ export const SignUpForm = () => {
               children={([canSubmit, isSubmitting]) => (
                 <Button type="submit" disabled={!canSubmit}>
                   {isSubmitting ? (
-                    <Loader2Icon className="bg-background text-foreground h-[40px] animate-spin hover:cursor-pointer" />
+                    <Loader2Icon className="text-foreground h-[40px] animate-spin hover:cursor-pointer" />
                   ) : (
                     "Continue"
                   )}

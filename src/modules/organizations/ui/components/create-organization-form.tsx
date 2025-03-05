@@ -92,7 +92,7 @@ export const CreateOrganizationForm = () => {
                   id="slug"
                   type="text"
                   placeholder="Enter a slug"
-                  className="bg-background border-border text-foreground placeholder:text-muted-foreground h-[40px]"
+                  className="border-border text-foreground placeholder:text-muted-foreground h-[40px]"
                   name={field.name}
                   value={field.state.value}
                   onBlur={field.handleBlur}
