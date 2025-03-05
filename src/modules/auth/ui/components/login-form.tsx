@@ -63,10 +63,11 @@ export const LoginForm = () => {
               name="email"
               children={(field) => (
                 <>
-                  <label htmlFor="name" className="sr-only">
+                  <label htmlFor="email" className="sr-only">
                     Email
                   </label>
                   <Input
+                    id="email"
                     type="email"
                     placeholder="Enter your email address"
                     className="bg-background border-border text-foreground placeholder:text-muted-foreground h-[40px]"
@@ -87,10 +88,11 @@ export const LoginForm = () => {
               name="password"
               children={(field) => (
                 <>
-                  <label htmlFor="name" className="sr-only">
+                  <label htmlFor="password" className="sr-only">
                     Password
                   </label>
                   <Input
+                    id="password"
                     type="password"
                     placeholder="Enter your password"
                     className="bg-background border-border text-foreground placeholder:text-muted-foreground h-[40px]"

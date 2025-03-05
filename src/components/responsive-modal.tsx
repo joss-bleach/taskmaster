@@ -36,7 +36,9 @@ export const ResponsiveModal = ({
           <DrawerHeader className="sr-only">
             <DrawerTitle>{title}</DrawerTitle>
           </DrawerHeader>
-          <DrawerContent>{children}</DrawerContent>
+          <DrawerContent>
+            <div className="p-6">{children}</div>
+          </DrawerContent>
         </Drawer>
       );
     case false:
@@ -45,7 +47,9 @@ export const ResponsiveModal = ({
           <DialogHeader>
             <DialogTitle className="sr-only">{title}</DialogTitle>
           </DialogHeader>
-          <DialogContent>{children}</DialogContent>
+          <DialogContent className="bg-background border-border border shadow-none">
+            {children}
+          </DialogContent>
         </Dialog>
       );
   }
