@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 import { AppProvider } from "@/providers/app-provider";
-import { ReactScan } from "@/lib/react-scan";
 
 export default function RootLayout({
   children,
