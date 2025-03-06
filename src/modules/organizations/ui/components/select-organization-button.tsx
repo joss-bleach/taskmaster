@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { EllipsisIcon, PlusIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -16,6 +16,46 @@ import {
 } from "@/components/ui/tooltip";
 import { SelecteOrganizationModal } from "./select-organization-modal";
 import { CreateOrganizationModal } from "./create-organization-modal";
+
+const CreateOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
+  <Tooltip>
+    <TooltipProvider>
+      <TooltipTrigger
+        onClick={onClick}
+        className="bg-background text-foreground border-border hover:bg-accent flex size-[40px] flex-row items-center justify-center border p-3 shadow-none transition hover:cursor-pointer"
+      >
+        <PlusIcon />
+      </TooltipTrigger>
+      <TooltipContent
+        className="bg-background text-foreground border-border border shadow-none"
+        side="right"
+        sideOffset={10}
+      >
+        Create organization
+      </TooltipContent>
+    </TooltipProvider>
+  </Tooltip>
+));
+
+const SelectOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
+  <Tooltip>
+    <TooltipProvider>
+      <TooltipTrigger
+        onClick={onClick}
+        className="bg-background text-foreground border-border hover:bg-accent flex size-[40px] flex-row items-center justify-center border p-3 shadow-none transition hover:cursor-pointer"
+      >
+        <EllipsisIcon />
+      </TooltipTrigger>
+      <TooltipContent
+        className="bg-background text-foreground border-border border shadow-none"
+        side="right"
+        sideOffset={10}
+      >
+        Select organization
+      </TooltipContent>
+    </TooltipProvider>
+  </Tooltip>
+));
 
 export const SelectOrganizationButton = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -76,42 +116,10 @@ export const SelectOrganizationButton = () => {
                 : "pointer-events-none translate-y-[48px] transition",
             )}
           >
-            <Tooltip>
-              <TooltipProvider>
-                <TooltipTrigger
-                  onClick={openCreateOrganization}
-                  className="bg-background text-foreground border-border hover:bg-accent flex size-[40px] flex-row items-center justify-center border p-3 shadow-none transition hover:cursor-pointer"
-                >
-                  <PlusIcon />
-                </TooltipTrigger>
-                <TooltipContent
-                  className="bg-background text-foreground border-border border shadow-none"
-                  side="right"
-                  sideOffset={10}
-                >
-                  Create organization
-                </TooltipContent>
-              </TooltipProvider>
-            </Tooltip>
+            <CreateOrgTooltip onClick={openCreateOrganization} />
           </li>
           <li>
-            <Tooltip>
-              <TooltipProvider>
-                <TooltipTrigger
-                  onClick={openSelectOrganization}
-                  className="bg-background text-foreground border-border hover:bg-accent flex size-[40px] flex-row items-center justify-center border p-3 shadow-none transition hover:cursor-pointer"
-                >
-                  <EllipsisIcon />
-                </TooltipTrigger>
-                <TooltipContent
-                  className="bg-background text-foreground border-border border shadow-none"
-                  side="right"
-                  sideOffset={10}
-                >
-                  Select organization
-                </TooltipContent>
-              </TooltipProvider>
-            </Tooltip>
+            <SelectOrgTooltip onClick={openSelectOrganization} />
           </li>
         </ul>
       </div>
