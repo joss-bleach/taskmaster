@@ -109,7 +109,7 @@ export const SelectOrganizationButton = () => {
               alt={organization?.name || "Organization"}
             />
             <AvatarFallback className="bg-background border-border text-foreground hover:bg-accent flex size-[40px] items-center justify-center rounded-none border text-sm transition hover:cursor-pointer">
-              {organization?.name?.slice(0, 2).toUpperCase() || "OR"}
+              {organization?.name?.charAt(0).toUpperCase() || "O"}
             </AvatarFallback>
           </Avatar>
         </label>
