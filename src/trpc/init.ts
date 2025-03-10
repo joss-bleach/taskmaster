@@ -1,38 +1,51 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { cache } from "react";
 import superjson from "superjson";
+
 import { getSession } from "@/modules/auth/actions/get-session";
 import { getUserProfile } from "@/db/queries/user";
 
 export const createTRPCContext = cache(async () => {
   const session = await getSession();
   if (!session) {
-    return { user: null };
+    return { userId: null };
   }
 
-  const user = await getUserProfile({ userId: session.user.id });
-  return { user };
+  return { userId: session.user.id };
 });
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+export type Context = Awaited<ReturnType<typeof createTRPCContext>>;
+
+const t = initTRPC.context<Context>().create({
   transformer: superjson,
 });
 
-// Create a middleware to check if user is authenticated
-const isAuthed = t.middleware(async ({ ctx, next }) => {
-  if (!ctx.user) {
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-      message: "You must be logged in to access this resource",
-    });
-  }
-  return next({
-    ctx: {
-      user: ctx.user,
-    },
-  });
-});
-
 export const createTRPCRouter = t.router;
+export const createCallerFactory = t.createCallerFactory;
 export const baseProcedure = t.procedure;
-export const protectedProcedure = t.procedure.use(isAuthed);
+export const protectedProcedure = baseProcedure.use(
+  async function isAuthed(opts) {
+    const { ctx } = opts;
+
+    if (!ctx.userId) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+      });
+    }
+
+    const user = await getUserProfile({ userId: ctx.userId });
+
+    if (!user) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+      });
+    }
+
+    return opts.next({
+      ctx: {
+        ...ctx,
+        user,
+      },
+    });
+  },
+);
