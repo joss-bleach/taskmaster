@@ -37,6 +37,7 @@ const CreateOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
     </TooltipProvider>
   </Tooltip>
 ));
+CreateOrgTooltip.displayName = "CreateOrgTooltip";
 
 const SelectOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
   <Tooltip>
@@ -57,6 +58,7 @@ const SelectOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
     </TooltipProvider>
   </Tooltip>
 ));
+SelectOrgTooltip.displayName = "SelectOrgTooltip";
 
 export const SelectOrganizationButton = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
