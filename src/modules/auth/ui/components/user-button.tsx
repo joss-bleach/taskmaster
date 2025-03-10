@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { createAuthClient } from "better-auth/react";
 import { authClient } from "../../lib/auth-client";
-const { useSession } = createAuthClient();
+
+import { trpc } from "@/trpc/client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -15,18 +15,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export const UserButton = () => {
-  const { data: session, isPending, error } = useSession();
+  const { data: user, isLoading: isPending, error } = trpc.user.me.useQuery();
   const router = useRouter();
 
   if (isPending) {
     return <Skeleton className="size-[32px] rounded-full" />;
   }
 
-  if (error || !session) {
+  if (error || !user) {
     return null;
   }
-
-  const { user } = session;
 
   const signOut = async () => {
     await authClient.signOut({
@@ -42,7 +40,7 @@ export const UserButton = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="hover:cursor-pointer">
         <Avatar className="size-[32px]">
-          <AvatarImage src={user.image ?? ""} />
+          <AvatarImage src={user.image || ""} />
           <AvatarFallback className="bg-background text-foreground border-border flex items-center justify-center border text-xs font-medium">
             {user.name.charAt(0)}
           </AvatarFallback>

@@ -2,9 +2,8 @@
 import "server-only";
 import { auth } from "../lib/auth";
 import { headers } from "next/headers";
-import { db } from "@/db";
-import { member, organization } from "@/db/schema";
-import { eq } from "drizzle-orm";
+
+import { getMembershipsByUserId } from "@/db/queries/member";
 
 export async function getMemberships() {
   const session = await auth.api.getSession({
@@ -15,9 +14,5 @@ export async function getMemberships() {
     return null;
   }
 
-  return await db
-    .select()
-    .from(member)
-    .where(eq(member.userId, session.user.id))
-    .innerJoin(organization, eq(member.organizationId, organization.id));
+  return await getMembershipsByUserId({ userId: session.user.id });
 }

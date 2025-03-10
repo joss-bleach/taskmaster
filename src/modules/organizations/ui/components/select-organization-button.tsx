@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 import { useSelectOrganization } from "../../hooks/use-select-organization";
 import { useCreateOrganization } from "../../hooks/use-create-organization";
+import { useCurrentOrganization } from "../../hooks/use-current-organization";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -16,7 +17,7 @@ import {
 } from "@/components/ui/tooltip";
 import { SelecteOrganizationModal } from "./select-organization-modal";
 import { CreateOrganizationModal } from "./create-organization-modal";
-
+import { Skeleton } from "@/components/ui/skeleton";
 const CreateOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
   <Tooltip>
     <TooltipProvider>
@@ -59,6 +60,8 @@ const SelectOrgTooltip = memo(({ onClick }: { onClick: () => void }) => (
 
 export const SelectOrganizationButton = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const { organization, isLoading } = useCurrentOrganization();
+  console.log(organization);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -83,6 +86,10 @@ export const SelectOrganizationButton = () => {
     };
   }, []);
 
+  if (isLoading) {
+    return <Skeleton className="size-[40px] rounded-none" />;
+  }
+
   return (
     <>
       <div className="relative" ref={containerRef}>
@@ -95,9 +102,12 @@ export const SelectOrganizationButton = () => {
         />
         <label htmlFor="organization-switch-button" className="relative z-10">
           <Avatar className="relative size-[40px] rounded-none">
-            <AvatarImage src="" alt="@shadcn" />
+            <AvatarImage
+              src={organization?.logo || ""}
+              alt={organization?.name || "Organization"}
+            />
             <AvatarFallback className="bg-background border-border text-foreground hover:bg-accent flex size-[40px] items-center justify-center rounded-none border text-sm transition hover:cursor-pointer">
-              CN
+              {organization?.name?.slice(0, 2).toUpperCase() || "OR"}
             </AvatarFallback>
           </Avatar>
         </label>
