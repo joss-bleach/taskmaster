@@ -50,7 +50,8 @@ export const CreateOrganizationForm = () => {
         slug,
       });
       router.push(`/o/${createdOrganization.data?.slug}`);
-    } catch (_) {
+    } catch (err) {
+      console.log(err);
       toast("Unable to create organisation. Please try again.");
     }
   };

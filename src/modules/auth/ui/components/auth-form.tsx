@@ -22,8 +22,9 @@ export const AuthForm = () => {
         provider,
       });
       router.push("/");
-    } catch (_) {
-      toast.error(`Unable to sign in with ${provider}. Please try again.`);
+    } catch (err) {
+      console.log(err);
+      toast(`Unable to sign in with ${provider}. Please try again.`);
     } finally {
       setIsLoading(false);
     }
